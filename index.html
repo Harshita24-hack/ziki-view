@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ziki Human View</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2b2350; --paper:#fff8e1; --pink:#ffd1e3; --blue:#cfe8ff; --green:#c9f5d9; --yellow:#fff0a8; --purple:#e3d4ff; --orange:#ffd9b3;
+    --btn:#ff5fa2; --btn2:#4f8bff; --good:#12805c; --bad:#c2255c;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;color:var(--ink);font:17px/1.5 Fredoka,"Trebuchet MS","Segoe UI",system-ui,sans-serif;
+    background:
+      radial-gradient(circle at 10% 15%, #ffe0f0 0 90px, transparent 91px),
+      radial-gradient(circle at 92% 10%, #d6ecff 0 120px, transparent 121px),
+      radial-gradient(circle at 85% 90%, #d8f8e4 0 110px, transparent 111px),
+      var(--paper);
+    background-attachment:fixed}
+  .wrap{max-width:1000px;margin:0 auto;padding:22px 16px 60px}
+  header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:22px}
+  h1{font-size:2rem;margin:0;line-height:1.15}
+  h1 span{display:inline-block}
+  h1 .c1{color:#ff5fa2}h1 .c2{color:#ff9f1c}h1 .c3{color:#12b886}h1 .c4{color:#4f8bff}h1 .c5{color:#9b5de5}
+  .tag{font-size:.8rem;background:var(--yellow);border:2px solid var(--ink);border-radius:999px;padding:2px 12px;vertical-align:middle}
+  .sub{margin:4px 0 0;font-size:1.05rem}
+  .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .card{border:3px solid var(--ink);border-radius:22px;padding:18px;box-shadow:6px 6px 0 var(--ink)}
+  .c-pink{background:var(--pink)} .c-blue{background:var(--blue)} .c-green{background:var(--green)}
+  .c-yellow{background:var(--yellow)} .c-purple{background:var(--purple)} .c-orange{background:var(--orange)}
+  .card h2{font-size:1.15rem;margin:0 0 10px;font-weight:700}
+  .big{font-size:3.4rem;font-weight:700;line-height:1;display:inline-block}
+  .say{margin:4px 0 0;font-size:.98rem}
+  .row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .agent{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:2px dashed var(--ink)}
+  .agent:first-of-type{border-top:0;padding-top:0}
+  .face{flex:none;width:46px;height:46px;border-radius:50%;border:3px solid var(--ink);display:grid;place-items:center;font-size:1.5rem;background:#fff}
+  .grow{flex:1}
+  .name{font-weight:700}
+  .badge{font-size:.78rem;font-weight:600;border:2px solid var(--ink);border-radius:999px;padding:1px 10px;background:#fff}
+  .b-wait{background:#ffe27a}.b-ok{background:#9ee6b9}.b-idle{background:#e5e5ee}
+  .full{grid-column:1/-1}
+  .pair{display:grid;gap:14px;grid-template-columns:1fr 1fr;margin:14px 0}
+  @media (max-width:560px){.pair{grid-template-columns:1fr}}
+  .ticket{background:#fff;border:3px solid var(--ink);border-radius:16px;padding:12px;font-size:.95rem}
+  .ticket b{display:block;margin-bottom:4px}
+  .ticket small{opacity:.8}
+  .same{color:var(--good);font-weight:700}.diff{color:var(--bad);font-weight:700}
+  .btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+  button{font:inherit;font-weight:600;cursor:pointer;border:3px solid var(--ink);border-radius:16px;padding:10px 20px;min-height:48px;color:var(--ink);
+    background:#fff;box-shadow:4px 4px 0 var(--ink);transition:transform .12s}
+  button:hover{transform:translate(-2px,-2px) rotate(-1.5deg)}
+  button:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+  button:focus-visible{outline:4px solid var(--btn2);outline-offset:3px}
+  button.yes{background:#7ee2a8} button.no{background:#ffb3c7}
+  ul.feed{list-style:none;margin:0;padding:0}
+  ul.feed li{padding:10px 0 10px 34px;border-top:2px dashed var(--ink);position:relative}
+  ul.feed li:first-child{border-top:0}
+  ul.feed li::before{content:"⭐";position:absolute;left:0;top:9px}
+  ul.feed time{display:block;font-size:.8rem;opacity:.75}
+  .note{font-size:.85rem;margin-top:26px;background:#fff;border:2px solid var(--ink);border-radius:14px;padding:10px 14px}
+  .done{font-weight:700;color:var(--good);font-size:1.15rem;margin:0}
+  .hop{animation:hop 2.4s ease-in-out infinite}
+  @keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  .pointspop{animation:pp .6s cubic-bezier(.3,1.6,.5,1)}
+  @keyframes pp{0%{transform:scale(1)}50%{transform:scale(1.4) rotate(-4deg)}100%{transform:scale(1)}}
+  @media (prefers-reduced-motion: reduce){.hop,.pointspop{animation:none}button:hover{transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1><span class="c1">Z</span><span class="c2">i</span><span class="c3">k</span><span class="c4">i</span> <span class="c5">Human View</span> <span class="tag">concept</span></h1>
+      <p class="sub">What are my agents doing, and what needs <b>me</b>? 👀</p>
+    </div>
+  </header>
+
+  <div class="grid">
+    <section class="card c-yellow" aria-labelledby="pts">
+      <h2 id="pts">⭐ My points</h2>
+      <div class="big hop" id="points">5</div>
+      <p class="say">Earned by my agents this week. It changes the moment an agent finishes something.</p>
+    </section>
+
+    <section class="card c-blue" aria-labelledby="ag">
+      <h2 id="ag">🤖 My agents, in plain words</h2>
+      <div class="agent">
+        <div class="face" aria-hidden="true">🕵️</div>
+        <div class="grow">
+          <div class="row"><span class="name">Triager agent</span><span class="badge b-wait" id="triagerBadge">Waiting for you</span></div>
+          <p class="say" id="triagerSay">Found 1 possible duplicate. It will not submit anything until you say yes.</p>
+        </div>
+      </div>
+      <div class="agent">
+        <div class="face" aria-hidden="true">📝</div>
+        <div class="grow">
+          <div class="row"><span class="name">Reviewer agent</span><span class="badge b-idle">Resting 😴</span></div>
+          <p class="say">Nothing to review right now.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card c-pink full" aria-labelledby="q">
+      <h2 id="q">🙋 Needs your decision</h2>
+      <div id="queue">
+        <p class="name">Is #141 a duplicate of #138?</p>
+        <p class="say">Look at both tickets side by side before your agent sends anything.</p>
+        <div class="pair">
+          <div class="ticket"><b>#138 (the first one)</b>Emoji picker does not replace highlighted text in DM composer
+            <small><br>Platform: Desktop · Reporter: same person · Linked issue: same</small></div>
+          <div class="ticket"><b>#141 (maybe a copy)</b>Emoji picker does not replace highlighted text in DM composer
+            <small><br>Platform: Desktop · Reporter: same person · Linked issue: same</small></div>
+        </div>
+        <p class="say"><span class="same">✔ Same:</span> title, text, platform, reporter, linked issue. <span class="diff">✖ Different:</span> opened 3 minutes apart.</p>
+        <div class="btns">
+          <button class="yes" id="yes">👍 Yes, submit it</button>
+          <button class="no" id="no">✋ No, skip this pair</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card c-green full" aria-labelledby="f">
+      <h2 id="f">📖 What happened (newest first)</h2>
+      <ul class="feed" id="feed" aria-live="polite">
+        <li>Triager agent found 1 possible duplicate. Waiting for you.<time>just now</time></li>
+        <li>Reviewer agent connected and is ready.<time>earlier today</time></li>
+        <li>You paired 2 agents.<time>earlier today</time></li>
+      </ul>
+    </section>
+  </div>
+
+  <p class="note">Concept by Harshita Sharma for the HNG15 individual task. A design proposal with example data, not the official Ziki site.
+  The idea: humans see what agents are doing in plain words, and say yes or no before an agent submits anything.</p>
+</div>
+
+<script>
+(function(){
+  var feed=document.getElementById('feed');
+  function add(text){
+    var li=document.createElement('li');
+    li.innerHTML=text+'<time>just now</time>';
+    feed.insertBefore(li,feed.firstChild);
+  }
+  function finish(msg){
+    document.getElementById('queue').innerHTML='<p class="done">'+msg+'</p>';
+    var b=document.getElementById('triagerBadge');
+    b.className='badge b-ok'; b.textContent='Done 🎉';
+    var p=document.getElementById('points'); p.classList.remove('pointspop'); void p.offsetWidth; p.classList.add('pointspop');
+  }
+  document.getElementById('yes').addEventListener('click',function(){
+    finish('🎉 Submitted! Your triager agent sent the duplicate verdict.');
+    document.getElementById('triagerSay').textContent='Submitted 1 duplicate verdict after you said yes.';
+    add('You said yes to #141 as a copy of #138. Triager agent submitted it.');
+  });
+  document.getElementById('no').addEventListener('click',function(){
+    finish('Skipped. Nothing was submitted.');
+    document.getElementById('triagerSay').textContent='Skipped 1 pair at your request. Nothing submitted.';
+    add('You skipped the #141 / #138 pair. Nothing was submitted.');
+  });
+})();
+</script>
+</body>
+</html>
