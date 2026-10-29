@@ -1,0 +1,138 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ziki Human View</title><style>
+:root{--bg:#050c21;--nav:#091330;--card:#0c1838;--card2:#10204a;--line:#1c2b57;--text:#f2f5ff;--muted:#8fa0c8;
+--blue:#2b6cff;--blue2:#7db4ff;--gold:#f5c542;--green:#3ddc97;--amber:#f5b84b;--red:#ff6b7a}
+*{box-sizing:border-box}
+html{color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,"Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
+.banner{background:#13224f;border-bottom:1px solid var(--line);padding:8px 16px;font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;text-align:center}
+.banner b{color:var(--text)}
+nav.top{background:var(--nav);border-bottom:1px solid var(--line)}
+.navin{max-width:1260px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:19px}
+.logo svg{width:24px;height:24px}
+.org{padding-left:16px;border-left:1px solid var(--line);font-weight:600}
+.links{display:flex;gap:20px;color:var(--muted);font-weight:500}
+.links span{white-space:nowrap}
+.sp{flex:1}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 14px;display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;position:relative}
+.avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#2dd4bf,#f59e0b);display:grid;place-items:center;color:#06122c;font-weight:800;font-size:14px}
+.pts{background:#2d2610;border-color:#5b4a14;color:var(--gold)}
+.dot{position:absolute;top:-4px;right:-2px;background:var(--red);color:#fff;border-radius:999px;min-width:18px;height:18px;font-size:11px;display:grid;place-items:center;padding:0 5px;font-weight:700}
+main{max-width:1260px;margin:0 auto;padding:30px 20px 70px}
+h1{font-size:34px;margin:0;line-height:1.15}
+.lead{color:var(--muted);margin:6px 0 0}
+.hd{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:11px 22px;font:inherit;font-weight:600;cursor:pointer;min-height:44px}
+.btn:focus-visible{outline:3px solid var(--blue2);outline-offset:2px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin:26px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;position:relative}
+.stat h3{margin:0;font-size:17px;display:flex;justify-content:space-between;align-items:center}
+.arrow{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--card2);display:grid;place-items:center;color:var(--muted)}
+.num{font-size:40px;font-weight:700;margin:12px 0 4px;line-height:1.1;display:inline-block}
+.sub{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14px}
+.pill{border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700}
+.p-blue{background:#16316f;color:var(--blue2)}.p-green{background:#12402f;color:var(--green)}.p-gray{background:#1a2a55;color:#c8d3f2}
+.sec{margin-bottom:26px}
+.sec h2{margin:0;font-size:21px}
+.sec .meta{color:var(--muted);font-size:14px;margin-left:8px;font-weight:400}
+.sech{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.tw{overflow-x:auto}
+table.t{width:100%;border-collapse:collapse;min-width:720px}
+table.t th{background:var(--card2);color:var(--blue2);font-size:12px;letter-spacing:.07em;text-transform:uppercase;text-align:left;padding:12px 14px}
+table.t th:first-child{border-radius:999px 0 0 999px}table.t th:last-child{border-radius:0 999px 999px 0}
+table.t td{padding:14px;border-bottom:1px solid var(--line);vertical-align:middle}
+.votes{background:var(--blue);color:#fff;border-radius:999px;padding:8px 14px;font-weight:700;display:inline-block}
+.badge{border-radius:999px;padding:3px 12px;font-size:13px;font-weight:700;border:1px solid}
+.b-med{color:var(--amber);border-color:#7a5a1d;background:#2c2310}
+.b-open{color:var(--blue2);border-color:#1f3d86;background:#10224f}
+.b-ready{color:var(--green);border-color:#1f6b4c;background:#0f2e27}
+.seg{display:flex;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px}
+.seg span{padding:7px 14px;border-radius:999px;color:var(--muted);font-weight:600;font-size:14px}
+.seg .on{background:var(--card2);color:var(--text)}
+.range{text-align:right}.range b{font-size:30px;display:block;line-height:1}.range span{color:var(--muted);font-size:13px}
+.legend{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:14px;margin:6px 0 18px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+.bars{display:flex;justify-content:space-between;gap:8px;padding:0 4px;overflow-x:auto}
+.bar{text-align:center;min-width:56px;flex:1}
+.bar b{display:block;font-size:14px;margin-bottom:10px}
+.col{height:200px;width:54px;margin:0 auto;border-radius:999px;background:#13244d;position:relative;overflow:hidden}
+.col:before{content:"";position:absolute;left:0;right:0;top:12%;border-top:2px dashed #aebbe0}
+.fill{position:absolute;left:0;right:0;bottom:0;background:var(--blue2);border-radius:999px;transition:height 1.2s ease}
+.bar small{display:block;color:var(--muted);margin-top:10px;font-size:13px}
+.agdot{display:inline-block;width:11px;height:11px;border-radius:50%;background:#7b86a6;margin-right:10px}
+.mono{color:var(--muted);font-size:13px;margin-left:8px}
+.new{outline:2px dashed var(--gold);outline-offset:6px}
+.tag{position:absolute;top:-13px;left:18px;background:var(--gold);color:#241a00;font-weight:800;font-size:11px;letter-spacing:.08em;padding:3px 10px;border-radius:999px;z-index:2}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+@media (max-width:640px){.pair{grid-template-columns:1fr}}
+.tk{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:14px}
+.tk b{display:block;margin-bottom:4px}.tk small{color:var(--muted)}
+.same{color:var(--green);font-weight:700}.diff{color:var(--red);font-weight:700}
+.yes{background:var(--blue);border-color:var(--blue)}
+.acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.st-wait{color:var(--amber)}.st-ok{color:var(--green)}
+.feed{list-style:none;margin:10px 0 0;padding:0;color:var(--muted);font-size:14px}
+.feed li{padding:7px 0;border-top:1px solid var(--line)}
+.note{color:var(--muted);font-size:13px;margin-top:30px;border:1px solid var(--line);border-radius:14px;padding:12px 16px}
+canvas#cv{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
+.sign{position:absolute;right:16px;top:16px;background:var(--gold);color:#241a00;font-weight:800;border-radius:999px;padding:4px 14px;opacity:0;transform:scale(.6) rotate(-6deg);z-index:3}
+.sign.show{animation:sign 1.8s ease-out}
+.glow{animation:glow 1.6s ease-out}
+.pop{animation:bounce .8s cubic-bezier(.3,1.6,.5,1)}
+.rain{background:linear-gradient(90deg,#ff5fa2,#ffb347,#3ddc97,#6cb2ff,#b388ff,#ff5fa2);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 5s linear infinite}
+.spark{position:absolute;font-size:20px;opacity:0;pointer-events:none}
+.sparkgo{animation:spk 1.4s ease-out}
+@keyframes flow{to{background-position:300% 0}}
+@keyframes bounce{0%{transform:scale(1)}35%{transform:scale(1.4) rotate(-4deg)}65%{transform:scale(.92) rotate(3deg)}100%{transform:scale(1)}}
+@keyframes glow{0%{box-shadow:0 0 0 0 rgba(245,197,66,.9)}100%{box-shadow:0 0 0 26px rgba(245,197,66,0)}}
+@keyframes sign{0%{opacity:0;transform:scale(.6) rotate(-6deg)}15%{opacity:1;transform:scale(1.2) rotate(4deg)}30%{opacity:.4}45%{opacity:1}60%{opacity:.4}75%{opacity:1;transform:scale(1) rotate(0)}100%{opacity:0;transform:scale(1)}}
+@keyframes spk{0%{opacity:0;transform:translate(0,0) scale(.4)}30%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.2) rotate(60deg)}}
+@media (prefers-reduced-motion:reduce){.rain{animation:none;background:none;color:var(--gold)}.sign.show{animation:none;opacity:1;transform:none}.glow,.pop,.sparkgo{animation:none}.fill{transition:none}}
+@media (max-width:760px){.links{display:none}.navin{gap:12px}h1{font-size:28px}}
+</style></head><body>
+<div class="banner"><span><b>Concept mockup</b> of the Ziki dashboard with a human-friendly change (highlighted). Example data, not the official site.</span></div><nav class="top"><div class="navin">
+<div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#2b6cff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14L5 19h14"/></svg><span>ziki</span></div><div class="org">Zedu &#9662;</div>
+<div class="links"><span>&#9711; Product</span><span>&#128226; Marketing</span><span>&#128737; Security</span></div>
+<div class="sp"></div>
+<div class="chip">&#129302; Agents &#9662;<span class="dot" id="needsDot">1</span></div>
+<div class="chip"><span class="avatar">H</span>Harshita Sharma &#9662;</div>
+<div class="chip pts" id="hdrPts">&#127942; <span id="hdrNum">5</span> pts</div>
+</div></nav><main><div class="hd"><div><h1>Welcome back, Harshita</h1><p class="lead">Issues, votes and your points for Ziki at a glance.</p></div><button class="btn">+ New issue</button></div>
+<div class="stats">
+<div class="card stat" id="ptsCard"><h3>Points <span class="arrow">&#8599;</span></h3>
+<div class="num" id="bigNum">5</div>
+<div class="sub"><span class="pill p-blue" id="togo">500 to go</span><span>500 required this week</span></div></div>
+<div class="card stat"><h3>Created by me <span class="arrow">&#8599;</span></h3><div class="num">1</div><div class="sub"><span class="pill p-green">+1</span><span>in the last 30 days</span></div></div>
+<div class="card stat"><h3>Assigned to me <span class="arrow">&#8599;</span></h3><div class="num">1</div><div class="sub"><span class="pill p-gray">0</span><span>high priority</span></div></div>
+<div class="card stat"><h3>Resolved issues <span class="arrow">&#8599;</span></h3><div class="num">0</div><div class="sub"><span class="pill p-gray">0%</span><span>of issues assigned to me</span></div></div>
+</div><section class="card sec new" id="decide"><span class="tag">NEW &middot; NEEDS YOU</span><div class="sech"><h2>Needs your decision <span class="pill p-gray" id="dcount">1</span></h2></div>
+<div id="queue"><p style="margin:0"><b>Is #141 a duplicate of #138?</b></p><p class="lead" style="margin:4px 0 0">Look at both tickets side by side before your agent submits anything.</p>
+<div class="pair"><div class="tk"><b>#138 (the first one)</b>Emoji picker does not replace highlighted text in DM composer<br><small>Platform: Desktop &middot; Reporter: same person &middot; Linked issue: same</small></div>
+<div class="tk"><b>#141 (maybe a copy)</b>Emoji picker does not replace highlighted text in DM composer<br><small>Platform: Desktop &middot; Reporter: same person &middot; Linked issue: same</small></div></div>
+<p style="margin:0 0 12px"><span class="same">&#10004; Same:</span> title, text, platform, reporter, linked issue. <span class="diff">&#10006; Different:</span> opened 3 minutes apart.</p>
+<div class="acts"><button class="btn yes" id="yes">Yes, submit it</button><button class="btn" id="no">No, skip this pair</button></div></div>
+<ul class="feed" id="feed" aria-live="polite"><li>Triager agent found 1 possible duplicate. Waiting for you.</li></ul></section><section class="card sec"><div class="sech"><h2>Issues assigned to me <span class="meta">1 issue &middot; sorted by top votes</span></h2><button class="btn">View all issues</button></div>
+<div class="tw"><table class="t"><thead><tr><th>Votes</th><th>Issue</th><th>Type</th><th>Priority</th><th>Status</th><th>Stage</th><th>Reported</th></tr></thead>
+<tbody><tr><td><span class="votes">&#8963; 11</span></td><td><b>[Bug] People page shows "Recent Messages" heading...</b><br><span class="meta" style="margin:0">#109 &middot; 2 comments</span></td><td>Fix</td><td><span class="badge b-med">Medium</span></td><td><span class="badge b-open">&bull; Open</span></td><td><span class="badge b-ready">&bull; Ready</span></td><td>Oct 17</td></tr></tbody></table></div>
+<div class="meta" style="margin:12px 0 0">Showing 1 issue</div></section><section class="card sec"><div class="sech"><div><h2>Your points</h2><div class="lead" style="font-size:14px">Points earned each week, last 8 weeks &middot; 500 pts required, more is welcome</div></div>
+<div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><div class="chip">&#128197; All dates &#9662;</div><div class="seg"><span>Daily</span><span class="on">Weekly</span><span>Monthly</span><span>Yearly</span></div><div class="range"><b id="rangeNum">5</b><span>pts in this range</span></div></div></div>
+<div class="legend"><span><i style="background:#2b6cff"></i>500 reached</span><span><i style="background:#7db4ff"></i>Below 500</span><span>- - Weekly requirement &middot; 500 pts</span></div>
+<div class="bars"><div class="bar"><b id="bv0">0</b><div class="col"><div class="fill" id="bf0" style="height:0%"></div></div><small>7 Sept</small></div><div class="bar"><b id="bv1">0</b><div class="col"><div class="fill" id="bf1" style="height:0%"></div></div><small>14 Sept</small></div><div class="bar"><b id="bv2">0</b><div class="col"><div class="fill" id="bf2" style="height:0%"></div></div><small>21 Sept</small></div><div class="bar"><b id="bv3">0</b><div class="col"><div class="fill" id="bf3" style="height:0%"></div></div><small>28 Sept</small></div><div class="bar"><b id="bv4">0</b><div class="col"><div class="fill" id="bf4" style="height:0%"></div></div><small>5 Oct</small></div><div class="bar"><b id="bv5">0</b><div class="col"><div class="fill" id="bf5" style="height:0%"></div></div><small>12 Oct</small></div><div class="bar"><b id="bv6">5</b><div class="col"><div class="fill" id="bf6" style="height:4%"></div></div><small>19 Oct</small></div><div class="bar"><b id="bv7">0</b><div class="col"><div class="fill" id="bf7" style="height:0%"></div></div><small>26 Oct</small></div></div></section><section class="card sec new"><span class="tag">HUMAN-FRIENDLY CHANGE</span><div class="sech"><h2>Your agents <span class="pill p-blue">2</span></h2><span class="meta">Plain words: what is each agent doing, and does it need me?</span></div>
+<div class="tw"><table class="t"><thead><tr><th>Agent</th><th>Status</th><th>What it is doing (plain words)</th><th style="text-align:right">Last seen</th></tr></thead><tbody>
+<tr><td><span class="agdot" id="tdot" style="background:var(--amber)"></span><b>opencode-triager</b><span class="mono">opencode/deepseek-v4.1-flash-free</span></td><td id="tstat" class="st-wait"><b>Waiting for you</b></td><td id="tsay">Found 1 possible duplicate. It will not submit anything until you say yes.</td><td style="text-align:right" class="mono">2 days ago</td></tr>
+<tr><td><span class="agdot"></span><b>opencode-deepseek</b><span class="mono">deepseek-v4.1-flash-free</span></td><td>Resting</td><td>Nothing to review right now.</td><td style="text-align:right" class="mono">4 days ago</td></tr></tbody></table></div></section><p class="note">Concept by Harshita Sharma for the HNG15 individual task. The dashboard layout is copied from a screenshot of the real Ziki. Changes: a "Needs your decision" panel, a red badge on the Agents button, and agent rows written in plain words. A human says yes or no before an agent submits.</p></main><script>
+(function(){
+  var feed=document.getElementById('feed');
+  function done(msg,line,say){
+    document.getElementById('queue').innerHTML='<p style="margin:0;font-weight:700;color:var(--green)">'+msg+'</p>';
+    document.getElementById('dcount').textContent='0';
+    var dot=document.getElementById('needsDot'); if(dot) dot.style.display='none';
+    document.getElementById('tstat').className='st-ok'; document.getElementById('tstat').innerHTML='<b>Done</b>';
+    document.getElementById('tdot').style.background='var(--green)';
+    document.getElementById('tsay').textContent=say;
+    var li=document.createElement('li'); li.textContent=line; feed.insertBefore(li,feed.firstChild);
+  }
+  document.getElementById('yes').onclick=function(){done('Submitted. Your triager agent sent the duplicate verdict.','You said yes: #141 is a copy of #138. Triager agent submitted it.','Submitted 1 duplicate verdict after you said yes.');};
+  document.getElementById('no').onclick=function(){done('Skipped. Nothing was submitted.','You skipped the #141 / #138 pair. Nothing was submitted.','Skipped 1 pair at your request. Nothing was submitted.');};
+})();
+</script></body></html>
