@@ -1,0 +1,404 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ziki Human View</title><style>
+:root{--bg:#050c21;--nav:#091330;--card:#0c1838;--card2:#10204a;--line:#1c2b57;--text:#f2f5ff;--muted:#8fa0c8;
+--blue:#2b6cff;--blue2:#7db4ff;--gold:#f5c542;--green:#3ddc97;--amber:#f5b84b;--red:#ff6b7a}
+*{box-sizing:border-box}
+html{color-scheme:dark}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 Inter,"Segoe UI",system-ui,-apple-system,Roboto,sans-serif}
+.banner{background:#13224f;border-bottom:1px solid var(--line);padding:8px 16px;font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;text-align:center}
+.banner b{color:var(--text)}
+nav.top{background:var(--nav);border-bottom:1px solid var(--line)}
+.navin{max-width:1260px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:19px}
+.logo svg{width:24px;height:24px}
+.org{padding-left:16px;border-left:1px solid var(--line);font-weight:600}
+.links{display:flex;gap:20px;color:var(--muted);font-weight:500}
+.links span{white-space:nowrap}
+.sp{flex:1}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 14px;display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;position:relative}
+.avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#2dd4bf,#f59e0b);display:grid;place-items:center;color:#06122c;font-weight:800;font-size:14px}
+.pts{background:#2d2610;border-color:#5b4a14;color:var(--gold)}
+.dot{position:absolute;top:-4px;right:-2px;background:var(--red);color:#fff;border-radius:999px;min-width:18px;height:18px;font-size:11px;display:grid;place-items:center;padding:0 5px;font-weight:700}
+main{max-width:1260px;margin:0 auto;padding:30px 20px 70px}
+h1{font-size:34px;margin:0;line-height:1.15}
+.lead{color:var(--muted);margin:6px 0 0}
+.hd{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:999px;padding:11px 22px;font:inherit;font-weight:600;cursor:pointer;min-height:44px}
+.btn:focus-visible{outline:3px solid var(--blue2);outline-offset:2px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin:26px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;position:relative}
+.stat h3{margin:0;font-size:17px;display:flex;justify-content:space-between;align-items:center}
+.arrow{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--card2);display:grid;place-items:center;color:var(--muted)}
+.num{font-size:40px;font-weight:700;margin:12px 0 4px;line-height:1.1;display:inline-block}
+.sub{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14px}
+.pill{border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700}
+.p-blue{background:#16316f;color:var(--blue2)}.p-green{background:#12402f;color:var(--green)}.p-gray{background:#1a2a55;color:#c8d3f2}
+.sec{margin-bottom:26px}
+.sec h2{margin:0;font-size:21px}
+.sec .meta{color:var(--muted);font-size:14px;margin-left:8px;font-weight:400}
+.sech{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.tw{overflow-x:auto}
+table.t{width:100%;border-collapse:collapse;min-width:720px}
+table.t th{background:var(--card2);color:var(--blue2);font-size:12px;letter-spacing:.07em;text-transform:uppercase;text-align:left;padding:12px 14px}
+table.t th:first-child{border-radius:999px 0 0 999px}table.t th:last-child{border-radius:0 999px 999px 0}
+table.t td{padding:14px;border-bottom:1px solid var(--line);vertical-align:middle}
+.votes{background:var(--blue);color:#fff;border-radius:999px;padding:8px 14px;font-weight:700;display:inline-block}
+.badge{border-radius:999px;padding:3px 12px;font-size:13px;font-weight:700;border:1px solid}
+.b-med{color:var(--amber);border-color:#7a5a1d;background:#2c2310}
+.b-open{color:var(--blue2);border-color:#1f3d86;background:#10224f}
+.b-ready{color:var(--green);border-color:#1f6b4c;background:#0f2e27}
+.seg{display:flex;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px}
+.seg span{padding:7px 14px;border-radius:999px;color:var(--muted);font-weight:600;font-size:14px}
+.seg .on{background:var(--card2);color:var(--text)}
+.range{text-align:right}.range b{font-size:30px;display:block;line-height:1}.range span{color:var(--muted);font-size:13px}
+.legend{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:14px;margin:6px 0 18px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+.bars{display:flex;justify-content:space-between;gap:8px;padding:0 4px;overflow-x:auto}
+.bar{text-align:center;min-width:56px;flex:1}
+.bar b{display:block;font-size:14px;margin-bottom:10px}
+.col{height:200px;width:54px;margin:0 auto;border-radius:999px;background:#13244d;position:relative;overflow:hidden}
+.col:before{content:"";position:absolute;left:0;right:0;top:12%;border-top:2px dashed #aebbe0}
+.fill{position:absolute;left:0;right:0;bottom:0;background:var(--blue2);border-radius:999px;transition:height 1.2s ease}
+.bar small{display:block;color:var(--muted);margin-top:10px;font-size:13px}
+.agdot{display:inline-block;width:11px;height:11px;border-radius:50%;background:#7b86a6;margin-right:10px}
+.mono{color:var(--muted);font-size:13px;margin-left:8px}
+.new{outline:2px dashed var(--gold);outline-offset:6px}
+.tag{position:absolute;top:-13px;left:18px;background:var(--gold);color:#241a00;font-weight:800;font-size:11px;letter-spacing:.08em;padding:3px 10px;border-radius:999px;z-index:2}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+@media (max-width:640px){.pair{grid-template-columns:1fr}}
+.tk{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:14px}
+.tk b{display:block;margin-bottom:4px}.tk small{color:var(--muted)}
+.same{color:var(--green);font-weight:700}.diff{color:var(--red);font-weight:700}
+.yes{background:var(--blue);border-color:var(--blue)}
+.acts{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.st-wait{color:var(--amber)}.st-ok{color:var(--green)}
+.feed{list-style:none;margin:10px 0 0;padding:0;color:var(--muted);font-size:14px}
+.feed li{padding:7px 0;border-top:1px solid var(--line)}
+.note{color:var(--muted);font-size:13px;margin-top:30px;border:1px solid var(--line);border-radius:14px;padding:12px 16px}
+canvas#cv{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50}
+.sign{position:absolute;right:16px;top:16px;background:var(--gold);color:#241a00;font-weight:800;border-radius:999px;padding:4px 14px;opacity:0;transform:scale(.6) rotate(-6deg);z-index:3}
+.sign.show{animation:sign 1.8s ease-out}
+.glow{animation:glow 1.6s ease-out}
+.pop{animation:bounce .8s cubic-bezier(.3,1.6,.5,1)}
+.rain{background:linear-gradient(90deg,#ff5fa2,#ffb347,#3ddc97,#6cb2ff,#b388ff,#ff5fa2);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 5s linear infinite}
+.spark{position:absolute;font-size:20px;opacity:0;pointer-events:none}
+.sparkgo{animation:spk 1.4s ease-out}
+@keyframes flow{to{background-position:300% 0}}
+@keyframes bounce{0%{transform:scale(1)}35%{transform:scale(1.4) rotate(-4deg)}65%{transform:scale(.92) rotate(3deg)}100%{transform:scale(1)}}
+@keyframes glow{0%{box-shadow:0 0 0 0 rgba(245,197,66,.9)}100%{box-shadow:0 0 0 26px rgba(245,197,66,0)}}
+@keyframes sign{0%{opacity:0;transform:scale(.6) rotate(-6deg)}15%{opacity:1;transform:scale(1.2) rotate(4deg)}30%{opacity:.4}45%{opacity:1}60%{opacity:.4}75%{opacity:1;transform:scale(1) rotate(0)}100%{opacity:0;transform:scale(1)}}
+@keyframes spk{0%{opacity:0;transform:translate(0,0) scale(.4)}30%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.2) rotate(60deg)}}
+@media (prefers-reduced-motion:reduce){.rain{animation:none;background:none;color:var(--gold)}.sign.show{animation:none;opacity:1;transform:none}.glow,.pop,.sparkgo{animation:none}.fill{transition:none}}
+@media (max-width:760px){.links{display:none}.navin{gap:12px}h1{font-size:28px}}
+
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 4px;border-bottom:1px solid var(--line);padding-bottom:12px}
+.tab{background:transparent;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:10px 20px;font:inherit;font-weight:600;cursor:pointer;min-height:44px;position:relative}
+.tab[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.tab:focus-visible,.btn:focus-visible,.link:focus-visible{outline:3px solid var(--blue2);outline-offset:2px}
+.tab .cnt{background:var(--red);color:#fff;border-radius:999px;font-size:11px;padding:1px 7px;margin-left:8px;font-weight:700}
+.tab.hl{outline:2px dashed var(--gold);outline-offset:4px}
+.view{margin-top:22px}
+.btn.sm{padding:6px 14px;min-height:36px;font-size:13px}
+.btn.ok{background:var(--blue);border-color:var(--blue)}
+.btn.warn{background:#3a2a0e;border-color:#7a5a1d;color:var(--amber)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.vote{cursor:pointer;border:0;font:inherit}
+.vote.on{background:#7c4dff}
+.prop{margin-bottom:18px}
+.prop .top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-start}
+.prop h3{margin:0;font-size:18px}
+.chk{display:flex;flex-wrap:wrap;gap:8px 16px;margin:6px 0 14px;font-size:14px}
+.chk .y{color:var(--green)}.chk .n{color:var(--red);font-weight:700}
+.alert{background:#3a2a0e;border:1px solid #7a5a1d;color:var(--amber);border-radius:12px;padding:8px 12px;font-size:14px;margin:6px 0 12px}
+.hint{background:#0f2e27;border:1px solid #1f6b4c;color:var(--green);border-radius:12px;padding:8px 12px;font-size:14px;margin:6px 0 12px}
+.res{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.res b.a{color:var(--green)}.res b.s{color:var(--muted)}
+.empty{text-align:center;color:var(--muted);padding:26px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.fchip{border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:999px;padding:7px 14px;font:inherit;font-weight:600;cursor:pointer;min-height:36px}
+.fchip[aria-pressed="true"]{background:var(--card2);color:var(--text);border-color:var(--blue2)}
+.ev{padding:12px 0;border-top:1px solid var(--line);display:flex;gap:12px;align-items:flex-start}
+.ev:first-child{border-top:0}
+.ev i{font-style:normal;width:30px;height:30px;border-radius:50%;background:var(--card2);display:grid;place-items:center;flex:none}
+.ev small{display:block;color:var(--muted)}
+.seg button{background:none;border:0;color:var(--muted);font:inherit;font-weight:600;font-size:14px;padding:7px 14px;border-radius:999px;cursor:pointer;min-height:36px}
+.seg button.on{background:var(--card2);color:var(--text)}
+dialog{background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:20px;padding:24px;width:min(440px,92vw)}
+dialog::backdrop{background:rgba(2,6,20,.7)}
+dialog label{display:block;font-weight:600;margin:12px 0 4px}
+dialog input,dialog select{width:100%;padding:11px 12px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--text);font:inherit}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(30px);background:#13224f;border:1px solid var(--blue2);color:var(--text);padding:12px 20px;border-radius:14px;opacity:0;transition:.25s;z-index:60;max-width:92vw}
+#toast.show{opacity:1;transform:translateX(-50%)}
+.stat.click{cursor:pointer}
+.stat.click:hover{border-color:var(--blue2)}
+.wig:hover .num{animation:wig .5s}
+@keyframes wig{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg) scale(1.1)}75%{transform:rotate(6deg) scale(1.1)}}
+.row2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.sumcard{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+</style></head><body>
+<div class="banner"><span><b>Concept mockup</b> of the Ziki dashboard with a human-friendly change (highlighted). Example data, not the official site.</span>
+<span style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" id="reset" type="button">Reset demo</button></span></div>
+<nav class="top"><div class="navin">
+<div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#2b6cff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h14L5 19h14"/></svg><span>ziki</span></div><div class="org">Zedu &#9662;</div>
+<div class="links"><span>&#9711; Product</span><span>&#128226; Marketing</span><span>&#128737; Security</span></div>
+<div class="sp"></div>
+<button class="chip" id="agentsChip" type="button" aria-label="Open agents" style="color:inherit;font:inherit;cursor:pointer">&#129302; Agents &#9662;<span class="dot" id="needsDot" hidden>0</span></button>
+<div class="chip"><span class="avatar">H</span>Harshita Sharma &#9662;</div>
+<button class="chip pts" id="hdrPts" type="button" aria-label="Go to dashboard points" style="font:inherit;cursor:pointer">&#127942; <span id="hdrNum">5</span> pts</button>
+</div></nav>
+<main>
+<div class="hd"><div><h1>Welcome back, Harshita</h1><p class="lead">Issues, votes and your points for Ziki at a glance.</p></div><button class="btn" id="newIssue" type="button">+ New issue</button></div>
+<div class="tabs" role="tablist" id="tabs">
+<button class="tab" role="tab" data-tab="dashboard">Dashboard</button>
+<button class="tab hl" role="tab" data-tab="needs">Needs you<span class="cnt" id="needsCnt" hidden>0</span></button>
+<button class="tab" role="tab" data-tab="agents">Agents</button>
+<button class="tab" role="tab" data-tab="activity">Activity</button>
+<button class="tab" role="tab" data-tab="about">How it works</button>
+</div>
+<div class="view" id="view" aria-live="polite"></div>
+<p class="note">Concept by Harshita Sharma for the HNG15 individual task. The dashboard is copied from a screenshot of the real Ziki. The human-friendly change: a "Needs you" tab with a badge, side-by-side checks before an agent submits, plain-words agent status, a pause button, and undo. Everything is connected: a decision updates the badge, the agents table, the points, the chart and the activity list.</p>
+</main>
+<dialog id="dlg"><form method="dialog" id="issueForm"><h2 style="margin:0 0 4px">New issue</h2><p class="lead" style="margin:0">It will appear in your issues table and the counters.</p>
+<label for="ititle">Title</label><input id="ititle" required maxlength="90" placeholder="[Bug] Something is broken">
+<label for="itype">Type</label><select id="itype"><option>Fix</option><option>Feature</option><option>Question</option></select>
+<div style="display:flex;gap:10px;justify-content:flex-end;margin-top:18px"><button class="btn" type="button" id="cancelIssue">Cancel</button><button class="btn ok" type="submit">Create issue</button></div></form></dialog>
+<dialog id="cdlg"><form method="dialog" id="chForm"><h2 style="margin:0 0 4px">Ask the agent to change it</h2><p class="lead" style="margin:0">Write a short reason. Nothing is submitted.</p><label for="creason">Reason</label><input id="creason" required maxlength="120" placeholder="For example: please check the platform again"><div style="display:flex;gap:10px;justify-content:flex-end;margin-top:18px"><button class="btn" type="button" id="cancelCh">Cancel</button><button class="btn ok" type="submit">Send to the agent</button></div></form></dialog>
+<div id="toast" role="status"></div>
+
+<script>
+(function(){
+var MODE='human', WHIM=(MODE==='whimsy'), KEY='zikiDemo-v2-'+MODE;
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function defaults(){return {
+  points:5, week:[0,0,0,0,0,0,5,0], created:1, assigned:1, tab:'dashboard', range:'weekly', filter:'all', nfilter:'all',
+  issues:[{id:109,title:'[Bug] People page shows "Recent Messages" heading...',comments:2,votes:11,voted:false,type:'Fix',pri:'Medium',status:'Open',stage:'Ready',date:'Oct 17'}],
+  agents:{triager:{name:'opencode-triager',model:'opencode/deepseek-v4.1-flash-free',paused:false,last:'2 days ago'},
+          reviewer:{name:'opencode-deepseek',model:'deepseek-v4.1-flash-free',paused:false,last:'4 days ago'}},
+  props:[
+   {id:'p1',agent:'triager',kind:'dup',title:'Is #141 a duplicate of #138?',
+    a:{n:'#138 (the first one)',t:'Emoji picker does not replace highlighted text in DM composer',m:'Desktop · same reporter · linked issue zedu-desktop #155'},
+    b:{n:'#141 (maybe a copy)',t:'Emoji picker does not replace highlighted text in DM composer',m:'Desktop · same reporter · linked issue zedu-desktop #155'},
+    block:false,risk:'Low',checks:[['Title',1],['Description',1],['Platform',1],['Reporter',1],['Linked issue',1]], note:'ok', msg:'All five checks match. It looks like a real duplicate (opened 3 minutes apart).', pts:30, status:'pending'},
+   {id:'p2',agent:'triager',kind:'dup',title:'Is #245 a duplicate of #241?',
+    a:{n:'#241 (the first one)',t:'Folders and Files tabs give new users nothing to see and nothing to click when there is no content',m:'Web · same reporter · linked issue zedu-fe #652'},
+    b:{n:'#245 (maybe a copy)',t:'Folders and Files tabs give new users nothing to see and nothing to click when there is no content',m:'Desktop · same reporter · linked issue zedu-fe #652'},
+    block:true,risk:'Medium',checks:[['Title',1],['Description',1],['Platform',0],['Reporter',1],['Linked issue',1]], note:'warn', msg:'Same words, but one is tagged Web and the other Desktop. Check carefully before you say yes.', pts:30, status:'pending'},
+   {id:'p3',agent:'reviewer',kind:'rev',title:'Example: review ticket "Button label has a typo"',
+    a:{n:'What the agent checked',t:'1 file changed, 1 line, the PR template is filled in.',m:'Agent confidence: high'},
+    b:{n:'What is still missing',t:'No demo video attached yet.',m:'Ask the author to add it'},
+    block:true,risk:'Low',checks:[['Scope is small',1],['Template filled',1],['Demo video',0]], note:'warn', msg:'The change is small and clear, but the demo video is missing. You can still send the review with that note.', pts:60, status:'pending'}
+  ],
+  events:[{ty:'agent',ic:'🤖',txt:'You paired 2 agents (triager and reviewer).',when:'earlier today'},{ty:'agent',ic:'🔎',txt:'Triager agent found 2 possible duplicates and asked for your decision.',when:'earlier today'}]
+};}
+var S; try{S=JSON.parse(localStorage.getItem(KEY)||'null')}catch(e){S=null}
+if(!S||!S.props||!S.props[0].risk) S=defaults();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function pending(){return S.props.filter(function(p){return p.status==='pending'})}
+function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(function(){t.classList.remove('show')},2600)}
+function ev(ty,ic,txt){S.events.unshift({ty:ty,ic:ic,txt:txt,when:'just now'})}
+function agentState(k){var a=S.agents[k];if(a.paused)return {s:'Paused by you',c:'st-wait'};
+  var n=pending().filter(function(p){return p.agent===k}).length; if(n)return {s:'Waiting for you',c:'st-wait'};return {s:'Resting',c:''}}
+function plain(k){var a=S.agents[k];if(a.paused)return 'You paused this agent. It will not do anything until you resume it.';
+  var n=pending().filter(function(p){return p.agent===k}).length;
+  if(n)return k==='triager'?'Found '+n+' possible duplicate'+(n>1?'s':'')+'. It will not submit anything until you say yes.':'Has '+n+' review ready. It will not send it until you say yes.';
+  var done=S.props.filter(function(p){return p.agent===k&&p.status!=='pending'}).length;
+  return done?'All done for now. You decided '+done+' request'+(done>1?'s':'')+'.':'Nothing to do right now.'}
+
+/* ---------- views ---------- */
+function statCards(){
+  var pc=WHIM?' new':''; var tag=WHIM?'<span class="tag">WHIMSICAL CHANGE</span>':''; var sign=WHIM?'<span class="sign" id="sign" aria-hidden="true"></span>':'';
+  return '<div class="stats">'+
+  '<div class="card stat click wig'+pc+'" id="ptsCard" data-act="spark" tabindex="0" role="button" aria-label="Points card">'+tag+sign+'<h3>Points <span class="arrow">&#8599;</span></h3><div class="num" id="bigNum">'+S.points+'</div><div class="sub"><span class="pill p-blue" id="togo">'+Math.max(0,500-S.points)+' to go</span><span>500 required this week</span></div></div>'+
+  '<div class="card stat"><h3>Created by me <span class="arrow">&#8599;</span></h3><div class="num">'+S.created+'</div><div class="sub"><span class="pill p-green">+'+S.created+'</span><span>in the last 30 days</span></div></div>'+
+  '<div class="card stat"><h3>Assigned to me <span class="arrow">&#8599;</span></h3><div class="num">'+S.assigned+'</div><div class="sub"><span class="pill p-gray">0</span><span>high priority</span></div></div>'+
+  '<div class="card stat"><h3>Resolved issues <span class="arrow">&#8599;</span></h3><div class="num">0</div><div class="sub"><span class="pill p-gray">0%</span><span>of issues assigned to me</span></div></div></div>'}
+function issuesTable(){
+  var rows=S.issues.map(function(i,ix){return '<tr><td><button class="votes vote'+(i.voted?' on':'')+'" data-act="vote" data-i="'+ix+'" aria-pressed="'+i.voted+'" aria-label="Upvote">&#8963; '+i.votes+'</button></td><td><b>'+esc(i.title)+'</b><br><span class="meta" style="margin:0">#'+i.id+' &middot; '+i.comments+' comments</span></td><td>'+esc(i.type)+'</td><td><span class="badge b-med">'+i.pri+'</span></td><td><span class="badge b-open">&bull; '+i.status+'</span></td><td><span class="badge b-ready">&bull; '+i.stage+'</span></td><td>'+i.date+'</td></tr>'}).join('');
+  return '<section class="card sec"><div class="sech"><h2>Issues assigned to me <span class="meta">'+S.issues.length+' issue'+(S.issues.length>1?'s':'')+' &middot; sorted by top votes</span></h2><button class="btn" data-act="newissue" type="button">+ New issue</button></div><div class="tw"><table class="t"><thead><tr><th>Votes</th><th>Issue</th><th>Type</th><th>Priority</th><th>Status</th><th>Stage</th><th>Reported</th></tr></thead><tbody>'+rows+'</tbody></table></div></section>'}
+function chartData(){
+  var r=S.range, p=S.points;
+  if(r==='weekly')return {l:['7 Sept','14 Sept','21 Sept','28 Sept','5 Oct','12 Oct','19 Oct','26 Oct'],v:S.week.slice()};
+  if(r==='daily')return {l:['Fri','Sat','Sun','Mon','Tue','Wed','Thu','Today'],v:[0,0,0,0,0,0,0,p]};
+  if(r==='monthly')return {l:['Mar','Apr','May','Jun','Jul','Aug','Sep','Oct'],v:[0,0,0,0,0,0,0,p]};
+  return {l:['2019','2020','2021','2022','2023','2024','2025','2026'],v:[0,0,0,0,0,0,0,p]}}
+function chart(){
+  var d=chartData(), mx=Math.max(500,Math.max.apply(null,d.v)), total=d.v.reduce(function(a,b){return a+b},0);
+  var cols=d.l.map(function(l,i){var v=d.v[i],h=v?Math.max(4,v/mx*88):0;return '<div class="bar"><b>'+v+'</b><div class="col"><div class="fill" data-h="'+h+'" style="height:'+h+'%"></div></div><small>'+l+'</small></div>'}).join('');
+  var seg=['daily','weekly','monthly','yearly'].map(function(r){return '<button type="button" data-act="range" data-r="'+r+'" class="'+(S.range===r?'on':'')+'" aria-pressed="'+(S.range===r)+'">'+r[0].toUpperCase()+r.slice(1)+'</button>'}).join('');
+  return '<section class="card sec"><div class="sech"><div><h2>Your points</h2><div class="lead" style="font-size:14px">Points earned each '+(S.range==='weekly'?'week, last 8 weeks':S.range==='daily'?'day, last 8 days':S.range==='monthly'?'month, last 8 months':'year')+' &middot; 500 pts required, more is welcome</div></div><div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap"><div class="seg">'+seg+'</div><div class="range"><b>'+total+'</b><span>pts in this range</span></div></div></div><div class="legend"><span><i style="background:#2b6cff"></i>500 reached</span><span><i style="background:#7db4ff"></i>Below 500</span><span>- - Weekly requirement &middot; 500 pts</span></div><div class="bars">'+cols+'</div></section>'}
+function agentsTable(){
+  var rows=['triager','reviewer'].map(function(k){var a=S.agents[k],st=agentState(k);
+    var dot=a.paused?'var(--red)':(st.c?'var(--amber)':'#7b86a6');
+    if(WHIM) return '<tr><td><span class="agdot" style="background:'+dot+'"></span><b>'+a.name+'</b><span class="mono">'+a.model+'</span></td><td>'+(a.paused?'Paused':'Offline')+'</td><td>'+(pending().filter(function(p){return p.agent===k}).length?'Has a request waiting':'No recent activity')+'</td><td style="text-align:right" class="mono">'+a.last+'</td></tr>';
+    return '<tr><td><span class="agdot" style="background:'+dot+'"></span><b>'+a.name+'</b><span class="mono">'+a.model+'</span></td><td class="'+st.c+'"><b>'+st.s+'</b></td><td>'+plain(k)+'</td><td style="text-align:right"><button class="btn sm '+(a.paused?'ok':'')+'" data-act="pause" data-k="'+k+'" type="button">'+(a.paused?'Resume':'Pause')+'</button></td></tr>'}).join('');
+  var th=WHIM?'<th>Agent</th><th>Status</th><th>Current activity</th><th style="text-align:right">Last seen</th>':'<th>Agent</th><th>Status</th><th>What it is doing (plain words)</th><th style="text-align:right">You can</th>';
+  var tag=WHIM?'':'<span class="tag">HUMAN-FRIENDLY CHANGE</span>';
+  return '<section class="card sec'+(WHIM?'':' new')+'">'+tag+'<div class="sech"><h2>Your agents <span class="pill p-blue">2</span></h2>'+(WHIM?'':'<span class="meta">Plain words: what is each agent doing, and does it need me?</span>')+'</div><div class="tw"><table class="t"><thead><tr>'+th+'</tr></thead><tbody>'+rows+'</tbody></table></div></section>'}
+function needsSummary(){
+  var n=pending().length;
+  return '<section class="card sec'+(WHIM?'':' new')+'">'+(WHIM?'':'<span class="tag">NEW &middot; NEEDS YOU</span>')+'<div class="sumcard"><div><h2 style="margin:0">'+(n?n+' thing'+(n>1?'s':'')+' need your decision':'Nothing needs you right now')+'</h2><p class="lead" style="margin:4px 0 0">'+(n?'Your agents will not submit anything until you say yes or no.':'All your agents requests are decided.')+'</p></div><button class="btn ok" data-tab="needs" type="button">'+(n?'Review now':'See history')+'</button></div></section>'}
+function viewDashboard(){return statCards()+needsSummary()+issuesTable()+chart()+agentsTable()}
+function viewNeeds(){
+  var pend=pending(), blk=pend.filter(function(x){return x.block}).length, f=S.nfilter;
+  var list=S.props.filter(function(x){return f==='all'||(f==='blocking'&&x.block&&x.status==='pending')});
+  var chips='<div class="chips"><button type="button" class="fchip" data-act="nfilter" data-f="all" aria-pressed="'+(f==='all')+'">All ('+S.props.length+')</button><button type="button" class="fchip" data-act="nfilter" data-f="blocking" aria-pressed="'+(f==='blocking')+'">Blocking ('+blk+')</button></div>';
+  var out='<section class="sec"><div class="sech"><h2>Needs your decision <span class="pill p-gray">'+pend.length+' waiting</span> <span class="pill '+(blk?'p-gray':'p-gray')+'">'+blk+' blocking</span></h2><span class="meta">Agents propose. You decide.</span></div>'+chips+'</section>';
+  if(!list.length)out+='<section class="card"><div class="empty">Nothing to show with this filter.</div></section>';
+  out+=list.map(function(x){
+    var checks='<div class="chk">'+x.checks.map(function(c){return '<span class="'+(c[1]?'y':'n')+'">'+(c[1]?'&#10004;':'&#10006;')+' '+c[0]+'</span>'}).join('')+'</div>';
+    var msg=x.note==='warn'?'<div class="alert">&#9888; '+esc(x.msg)+'</div>':'<div class="hint">&#10004; '+esc(x.msg)+'</div>';
+    var body;
+    if(x.status==='pending'){
+      body=checks+msg+'<div class="acts"><button class="btn ok" data-act="decide" data-id="'+x.id+'" data-c="yes" type="button">'+(x.kind==='dup'?'Yes, submit it':'Yes, send the review')+' (+'+x.pts+' example pts)</button><button class="btn" data-act="decide" data-id="'+x.id+'" data-c="no" type="button">No, skip this</button><button class="btn warn" data-act="changes" data-id="'+x.id+'" type="button">Ask the agent to change it</button></div>';
+    } else {
+      var line=x.status==='approved'?'<b class="a">&#10004; You said yes. The agent '+(x.kind==='dup'?'submitted the verdict':'sent the review')+' (+'+x.pts+' pts).</b>':x.status==='changes'?'<b class="s">&#9998; You asked the agent to change it: "'+esc(x.reason||'')+'"</b>':'<b class="s">You skipped this. Nothing was submitted.</b>';
+      body=checks+'<div class="res">'+line+'<button class="btn sm" data-act="undo" data-id="'+x.id+'" type="button">Undo</button></div>';
+    }
+    var risk='<span class="pill '+(x.risk==='Low'?'p-green':'p-gray')+'" title="How risky is a wrong answer?">Risk: '+x.risk+'</span>';
+    var blockPill=x.block?'<span class="pill p-gray">Blocking</span>':'';
+    return '<section class="card prop'+(WHIM?'':' new')+'">'+(WHIM||x.status!=='pending'?'':'<span class="tag">NEEDS YOU</span>')+'<div class="top"><h3>'+esc(x.title)+'</h3><span style="display:flex;gap:6px;flex-wrap:wrap"><span class="pill p-gray">'+(x.kind==='dup'?'Triager agent':'Reviewer agent')+'</span>'+risk+blockPill+'</span></div>'+
+      '<div class="pair"><div class="tk"><b>'+esc(x.a.n)+'</b>'+esc(x.a.t)+'<br><small>'+esc(x.a.m)+'</small></div><div class="tk"><b>'+esc(x.b.n)+'</b>'+esc(x.b.t)+'<br><small>'+esc(x.b.m)+'</small></div></div>'+body+'</section>'}).join('');
+  return out}
+function viewAbout(){
+  if(WHIM) return '<section class="card sec"><h2 style="margin:0 0 8px">About this change</h2>'+
+   '<p><b>One element changed:</b> the Points card on the dashboard (and the points pill in the header). Everything else is the real Ziki layout, unchanged.</p>'+
+   '<p><b>The problem:</b> points are the reward for all the agent work, but today the number just quietly changes. Nothing tells you something good happened.</p>'+
+   '<p><b>The whimsical change:</b> when points go up, the number counts up in rainbow colors, sparkles burst around the card, a "+points" sign flashes and confetti falls. Crossing 100, 250 or 500 points gives a bigger milestone celebration. You can also click the card for sparkles.</p>'+
+   '<p><b>Where it goes in the real product:</b> the Points card on the dashboard, with the same effect on the header pill.</p>'+
+   '<p><b>Reference idea:</b> the reward animations (confetti, sparkles, count-up) that apps use to celebrate progress. The card looks and sounds like Ziki; only the celebration is new.</p>'+
+   '<p><b>Try it:</b> press <i>Preview: an agent finished a review</i> at the top, or approve something in the Needs you tab.</p>'+
+   '<p><b>Care for people:</b> if your device is set to reduce motion, the confetti, sparkles and flashing are switched off and the sign just appears.</p></section>';
+  return '<section class="card sec"><h2 style="margin:0 0 8px">How it works: a human approval center for Ziki</h2>'+
+   '<p><b>The problem:</b> on Ziki today, agents do the work and a human who opens the site cannot tell what is going on. I felt this myself: my triager agent proposed duplicate pairs by comparing titles only, and I had to open every ticket by hand to check the platform and description before anything was submitted.</p>'+
+   '<p><b>The proposal:</b> add a <b>Needs you</b> tab where every agent proposal waits for a human decision, with the evidence on the screen.</p>'+
+   '<ul><li><b>A badge</b> on the Agents button and the Needs you tab shows how many things are waiting, and how many are <b>blocking</b>.</li>'+
+   '<li><b>Side-by-side evidence</b> with simple checks (title, description, platform, reporter, linked issue) and a warning when something does not match.</li>'+
+   '<li><b>Three choices:</b> Yes (the agent acts), No (nothing is submitted), or <b>Ask the agent to change it</b> with a short reason.</li>'+
+   '<li><b>Plain-words agent status:</b> "Waiting for you", "Resting", "Paused by you", instead of "Offline / No recent activity".</li>'+
+   '<li><b>Pause and undo:</b> a human can pause an agent, and every decision can be undone and is written to the Activity list.</li></ul>'+
+   '<p><b>How a decision flows:</b> the agent proposes, the badge appears, the human checks the evidence, the human decides, the agent acts, and the points, chart and activity update together.</p>'+
+   '<p><b>What stays the same:</b> agents still do the work and points still come from the same actions. Nothing is submitted without a human yes.</p>'+
+   '<p><b>How we would know it works:</b> fewer wrong duplicate verdicts, less time to decide, and fewer people asking "what is my agent doing?".</p>'+
+   '<p class="lead" style="font-size:13px">Other classmates built approval-center prototypes too (Ziki Human approval center, Agent Command Center). They point in the same direction. This one is built on the real dashboard layout and adds side-by-side evidence, pause, undo and "ask for changes". Points shown are example points.</p></section>'}
+function viewAgents(){
+  return agentsTable()+'<section class="card sec"><h2 style="margin:0 0 6px">How this works</h2><p class="lead" style="margin:0">An agent can look at things and make a proposal. <b>You</b> decide. If you pause an agent, it cannot submit anything, and the Needs you buttons for that agent will ask you to resume it first.</p></section>'}
+function viewActivity(){
+  var f=S.filter, list=S.events.filter(function(e){return f==='all'||e.ty===f});
+  var chips=[['all','All'],['decision','Decisions'],['points','Points'],['agent','Agents']].map(function(c){return '<button type="button" class="fchip" data-act="filter" data-f="'+c[0]+'" aria-pressed="'+(f===c[0])+'">'+c[1]+'</button>'}).join('');
+  return '<section class="card sec"><div class="sech"><h2>Activity</h2></div><div class="chips">'+chips+'</div>'+(list.length?list.map(function(e){return '<div class="ev"><i aria-hidden="true">'+e.ic+'</i><div>'+esc(e.txt)+'<small>'+e.when+'</small></div></div>'}).join(''):'<div class="empty">Nothing here yet.</div>')+'</section>'}
+
+/* ---------- render ---------- */
+function render(){
+  var v=document.getElementById('view');
+  v.innerHTML=S.tab==='needs'?viewNeeds():S.tab==='agents'?viewAgents():S.tab==='activity'?viewActivity():S.tab==='about'?viewAbout():viewDashboard();
+  Array.prototype.forEach.call(document.querySelectorAll('.tab'),function(t){t.setAttribute('aria-selected',String(t.getAttribute('data-tab')===S.tab))});
+  var n=pending().length, c=document.getElementById('needsCnt'), d=document.getElementById('needsDot');
+  c.hidden=!n; c.textContent=n; d.hidden=!n; d.textContent=n;
+  document.getElementById('hdrNum').textContent=S.points;
+  save();
+}
+function go(tab){S.tab=tab;try{history.replaceState(null,'','#'+tab)}catch(e){}render();window.scrollTo(0,0)}
+
+/* ---------- actions ---------- */
+function award(n,why){
+  S.points+=n; S.week[6]+=n; ev('points','⭐','+'+n+' example points: '+why);
+}
+function undoAward(n){S.points-=n;S.week[6]-=n}
+function decide(id,c){
+  var p=S.props.filter(function(x){return x.id===id})[0]; if(!p||p.status!=='pending')return;
+  if(S.agents[p.agent].paused){toast('Resume the '+p.agent+' agent first (Agents tab).');return}
+  if(c==='yes'){
+    p.status='approved';
+    ev('decision','👍','You said yes: '+p.title.replace('Example: ','')+' The '+p.agent+' agent '+(p.kind==='dup'?'submitted the verdict.':'sent the review.'));
+    award(p.pts,p.kind==='dup'?'duplicate verdict':'review');
+    S.agents[p.agent].last='just now';
+    render(); if(WHIM)celebrate(p.pts); else {pop();toast('Done. +'+p.pts+' example points.')}
+  } else {
+    p.status='skipped';
+    ev('decision','✋','You skipped: '+p.title.replace('Example: ','')+' Nothing was submitted.');
+    render(); toast('Skipped. Nothing was submitted.');
+  }
+}
+function undo(id){
+  var p=S.props.filter(function(x){return x.id===id})[0]; if(!p||p.status==='pending')return;
+  if(p.status==='approved')undoAward(p.pts);
+  p.status='pending'; ev('decision','↩','You undid your decision on: '+p.title.replace('Example: ','')); render(); toast('Undone. It is waiting for you again.');
+}
+function pop(){var b=document.getElementById('bigNum'),h=document.getElementById('hdrPts');[b,h].forEach(function(e){if(!e)return;e.classList.remove('pointspop');void e.offsetWidth;e.classList.add('pointspop')})}
+
+/* ---------- whimsy ---------- */
+var cv=document.getElementById('cv'),ctx=cv?cv.getContext('2d'):null,bits=[],running=false,colors=['#ff5fa2','#ffb347','#3ddc97','#6cb2ff','#b388ff','#ffd43b'];
+function size(){if(cv){cv.width=innerWidth;cv.height=innerHeight}} addEventListener('resize',size);size();
+function burst(el,n){var r=el.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2;
+  for(var i=0;i<n;i++){var a=Math.random()*6.283,s=4+Math.random()*8;bits.push({x:x,y:y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-5,w:6+Math.random()*7,h:9+Math.random()*9,c:colors[i%6],rot:Math.random()*6,vr:(Math.random()-.5)*.4,life:90+Math.random()*50,round:i%4==0})}
+  if(!running){running=true;requestAnimationFrame(tick)}}
+function tick(){ctx.clearRect(0,0,cv.width,cv.height);bits=bits.filter(function(b){return b.life>0&&b.y<cv.height+30});
+  bits.forEach(function(b){b.x+=b.vx;b.y+=b.vy;b.vy+=.22;b.vx*=.99;b.rot+=b.vr;b.life--;ctx.save();ctx.translate(b.x,b.y);ctx.rotate(b.rot);ctx.globalAlpha=Math.min(1,b.life/30);ctx.fillStyle=b.c;
+    if(b.round){ctx.beginPath();ctx.arc(0,0,b.w/2,0,6.283);ctx.fill()}else{ctx.fillRect(-b.w/2,-b.h/2,b.w,b.h)}ctx.restore()});
+  if(bits.length)requestAnimationFrame(tick);else{running=false;ctx.clearRect(0,0,cv.width,cv.height)}}
+function sparkles(card){if(reduce||!card)return;for(var i=0;i<8;i++){var s=document.createElement('span');s.className='spark sparkgo';s.textContent='✨';var a=i/8*6.283;
+  s.style.setProperty('--dx',Math.cos(a)*70+'px');s.style.setProperty('--dy',Math.sin(a)*50+'px');s.style.left='60px';s.style.top='70px';card.appendChild(s);setTimeout(function(e){e.remove()}.bind(null,s),1500)}}
+function countUp(from,to){var st=null,d=800;function step(t){if(st===null)st=t;var p=Math.min(1,(t-st)/d),v=Math.round(from+(to-from)*p);
+  var b=document.getElementById('bigNum');if(b)b.textContent=v;document.getElementById('hdrNum').textContent=v;if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
+function celebrate(n){
+  var from=S.points-n, big=document.getElementById('bigNum'), card=document.getElementById('ptsCard'), sign=document.getElementById('sign'), hdr=document.getElementById('hdrPts');
+  countUp(from,S.points); pop();
+  var milestone=[100,250,500].filter(function(m){return from<m&&S.points>=m})[0];
+  var txt=milestone?('🎉 '+milestone+' pts!'):('⭐ +'+n+' pts! ⭐');
+  if(sign){sign.textContent=txt;sign.classList.remove('show');void sign.offsetWidth;sign.classList.add('show')}
+  if(big)big.classList.add('rain');
+  if(card){card.classList.remove('glow');void card.offsetWidth;card.classList.add('glow');sparkles(card)}
+  var tgt=big||hdr; if(!reduce&&cv)burst(tgt,milestone?220:(n>=60?110:60));
+  var th=document.getElementById('togo'); if(th)th.textContent=Math.max(0,500-S.points)+' to go';
+  toast(milestone?'Milestone reached!':'+'+n+' example points!');
+}
+
+/* ---------- events ---------- */
+document.addEventListener('click',function(e){
+  var t=e.target.closest('[data-tab],[data-act]'); if(!t)return;
+  if(t.hasAttribute('data-tab')&&!t.hasAttribute('data-act')){go(t.getAttribute('data-tab'));return}
+  var a=t.getAttribute('data-act');
+  if(a==='decide')decide(t.getAttribute('data-id'),t.getAttribute('data-c'));
+  else if(a==='undo')undo(t.getAttribute('data-id'));
+  else if(a==='pause'){var k=t.getAttribute('data-k'),ag=S.agents[k];ag.paused=!ag.paused;ev('agent','🤖','You '+(ag.paused?'paused':'resumed')+' '+ag.name+'.');render();toast(ag.paused?ag.name+' is paused.':ag.name+' is back at work.')}
+  else if(a==='vote'){var i=S.issues[+t.getAttribute('data-i')];i.voted=!i.voted;i.votes+=i.voted?1:-1;ev('decision','⬆',(i.voted?'You upvoted ':'You removed your vote from ')+'#'+i.id+'.');render()}
+  else if(a==='range'){S.range=t.getAttribute('data-r');render();requestAnimationFrame(function(){})}
+  else if(a==='filter'){S.filter=t.getAttribute('data-f');render()}
+  else if(a==='nfilter'){S.nfilter=t.getAttribute('data-f');render()}
+  else if(a==='changes')openChanges(t.getAttribute('data-id'));
+  else if(a==='newissue')openIssue();
+  else if(a==='spark'&&WHIM){var c=document.getElementById('ptsCard');sparkles(c);if(!reduce&&cv)burst(document.getElementById('bigNum'),30)}
+});
+document.getElementById('agentsChip').onclick=function(){go('agents')};
+document.getElementById('hdrPts').onclick=function(){go('dashboard')};
+var dlg=document.getElementById('dlg');
+function openIssue(){document.getElementById('ititle').value='';if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','')}
+document.getElementById('newIssue').onclick=openIssue;
+document.getElementById('cancelIssue').onclick=function(){dlg.close()};
+document.getElementById('issueForm').addEventListener('submit',function(e){
+  var title=document.getElementById('ititle').value.trim(); if(!title){e.preventDefault();return}
+  var id=1400+S.created+Math.floor(Math.random()*50);
+  S.issues.unshift({id:id,title:title,comments:0,votes:0,voted:false,type:document.getElementById('itype').value,pri:'Medium',status:'Open',stage:'New',date:'Today'});
+  S.created++;S.assigned++;ev('decision','📝','You created issue #'+id+': '+title);
+  render();toast('Issue created. It is in your table now.');
+});
+var cdlg=document.getElementById('cdlg'), chId=null;
+function openChanges(id){var p=S.props.filter(function(x){return x.id===id})[0];if(!p||p.status!=='pending')return;
+  if(S.agents[p.agent].paused){toast('Resume the '+p.agent+' agent first (Agents tab).');return}
+  chId=id;document.getElementById('creason').value='';if(cdlg.showModal)cdlg.showModal();else cdlg.setAttribute('open','')}
+document.getElementById('cancelCh').onclick=function(){cdlg.close()};
+document.getElementById('chForm').addEventListener('submit',function(e){
+  var r=document.getElementById('creason').value.trim(); if(!r){e.preventDefault();return}
+  var p=S.props.filter(function(x){return x.id===chId})[0]; if(!p)return;
+  p.status='changes';p.reason=r;ev('decision','\u270F','You asked the '+p.agent+' agent to change: '+p.title.replace('Example: ','')+' Reason: '+r);
+  render();toast('Sent. Nothing was submitted.');
+});
+var sim=document.getElementById('sim');
+if(sim)sim.onclick=function(){if(S.tab!=='dashboard')go('dashboard');award(60,'an agent finished a review');save();celebrate(60);render2()};
+function render2(){var h=document.getElementById('hdrNum');if(h)h.textContent=S.points}
+document.getElementById('reset').onclick=function(){try{localStorage.removeItem(KEY)}catch(e){}S=defaults();go('dashboard');toast('Demo reset.')};
+window.addEventListener('hashchange',function(){var h=location.hash.slice(1);if(['dashboard','needs','agents','activity','about'].indexOf(h)>-1&&h!==S.tab){S.tab=h;render()}});
+var h0=location.hash.slice(1); if(['dashboard','needs','agents','activity','about'].indexOf(h0)>-1)S.tab=h0;
+render();
+})();
+</script></body></html>
